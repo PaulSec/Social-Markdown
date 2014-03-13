@@ -1,0 +1,33 @@
+div#editor {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width:700px;
+    margin-top: 60px;
+    margin-left:10px;      
+    margin-bottom: 10px;
+}
+div#result {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width:700px;
+    margin-top: 60px;
+    margin-right:10px;      
+    margin-left: 730px;
+    margin-bottom: 10px;
+    background-color: #E8E8E8;
+}
+
+button#start-togetherjs {
+    margin-top:10px;
+}
+
+iframe#fork {
+    margin-left:500px;
+    margin-top:15px;
+}

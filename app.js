@@ -3,7 +3,6 @@ var express = require('express');
 var http = require('http');
 var message = require('./lib/message.js');
 var session = require('./lib/session.js');
-var marked = require('marked');
 
 var app = express();
 var server = http.createServer(app); 
@@ -48,14 +47,6 @@ app.get('/contact', function(req, res) {
 app.get('/new', function(req, res) {
 	session.initSession(req, res);
 });
-
-// translate markdown
-app.get('/markdown/:markdown', function (req, res) {
-	marked(req.markdown, function (err, content) {
-  		if (err) throw err;
-  		res.send(content);
-	});
-})
 
 // access the file
 app.get('/file/:idFile', function(req, res) {

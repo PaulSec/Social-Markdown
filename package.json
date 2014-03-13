@@ -5,7 +5,8 @@
   "main": "app.js",
   "dependencies": {
     "express": "^3.4.8",
-    "colors": "^0.6.2"
+    "colors": "^0.6.2",
+    "ejs": "^0.8.5"
   },
   "devDependencies": {},
   "scripts": {

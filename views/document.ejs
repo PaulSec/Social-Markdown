@@ -1,0 +1,38 @@
+<% include header.ejs %>
+
+    <div class="container theme-showcase" role="main">
+
+        <section>
+            <div id="editor">
+### This file is a template
+
+As you can __see__, Markdown is highlighted !
+
+Some Javascript code: 
+```javascript
+function () {
+    alert(document.cookie)
+}
+```
+            </div>
+            <div id="result">
+                <br /><br /><br />
+                This part will automatically be updated when you'll start to write. <br />
+                <b>Try it ! </b>
+            </div>
+        </section>
+    </div>
+
+    <script src="/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/marked.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.getSession().setMode("ace/mode/markdown");
+        editor.on("change", function(e) {
+            var code = editor.getSession().getValue();
+            resMarked = marked(code);
+            $("#result").html(resMarked);
+        })
+    </script>
+<% include footer.ejs %>    

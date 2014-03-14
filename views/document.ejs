@@ -4,21 +4,9 @@
 
         <section>
             <div id="editor">
-### This file is a template
-
-As you can __see__, Markdown is highlighted !
-
-Some Javascript code: 
-```javascript
-function () {
-    alert(document.cookie)
-}
-```
+<%- content %>
             </div>
             <div id="result">
-                <br /><br /><br />
-                This part will automatically be updated when you'll start to write. <br />
-                <b>Try it ! </b>
             </div>
         </section>
     </div>
@@ -29,10 +17,14 @@ function () {
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/markdown");
+        editor.setOptions({
+             maxLines: Infinity
+        });
+        // When changes on the editor
         editor.on("change", function(e) {
             var code = editor.getSession().getValue();
             resMarked = marked(code);
             $("#result").html(resMarked);
-        })
+        });
     </script>
 <% include footer.ejs %>    

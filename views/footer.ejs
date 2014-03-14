@@ -9,6 +9,14 @@
         $(function () {
           $("#start-togetherjs").click(TogetherJS);
         });
+
+        $( document ).ready(function() {
+            if (editor != null && editor != undefined) {
+                var code = editor.getSession().getValue();
+                resMarked = marked(code);
+                $("#result").html(resMarked);    
+            }
+        });
     </script>    
     </script>
   </body>

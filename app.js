@@ -52,11 +52,11 @@ app.get('/new', function(req, res) {
 
 // access the file
 app.get('/file/:idFile', function(req, res) {
-	model.fileExists(req.params.idFile, function (exists) {
-		if (exists) {
-			res.render('document.ejs');
-		} else {
+	model.getFile(req.params.idFile, function (contentData) {
+		if (contentData == null) {
 			utils.redirect(req, res, '/new');
+		} else {
+			res.render('document.ejs', {content: contentData});
 		}
 	});
 });

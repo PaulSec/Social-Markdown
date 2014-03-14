@@ -3,6 +3,8 @@ var express = require('express');
 var http = require('http');
 var message = require('./lib/message.js');
 var session = require('./lib/session.js');
+var model = require('./lib/model.js');
+var utils = require('./lib/utils.js');
 
 var app = express();
 var server = http.createServer(app); 
@@ -50,14 +52,18 @@ app.get('/new', function(req, res) {
 
 // access the file
 app.get('/file/:idFile', function(req, res) {
-	res.render('document.ejs');
-	// res.send("Creating file " + req.idFile);
+	model.fileExists(req.params.idFile, function (exists) {
+		if (exists) {
+			res.render('document.ejs');
+		} else {
+			utils.redirect(req, res, '/new');
+		}
+	});
 });
 
 // bootstrap help 
 app.get('/bootstrap', function(req, res) {
 	res.render('bootstrap.ejs');
-	// res.send("Creating file " + req.idFile);
 });
 
 server.listen(8080);

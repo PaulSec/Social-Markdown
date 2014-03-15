@@ -25,9 +25,14 @@ div#result {
 
 button#start-togetherjs {
     margin-top:10px;
+    margin-left:10px;
+}
+
+button#save-document {
+    margin-top:10px;
 }
 
 iframe#fork {
-    margin-left:500px;
+    margin-left:400px;
     margin-top:15px;
 }

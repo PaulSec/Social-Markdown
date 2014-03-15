@@ -17,9 +17,12 @@
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/markdown");
+        editor.getSession().setUseWrapMode(true)
+        editor.setShowPrintMargin(false)        
         editor.setOptions({
              maxLines: Infinity
         });
+
         // When changes on the editor
         editor.on("change", function(e) {
             var code = editor.getSession().getValue();

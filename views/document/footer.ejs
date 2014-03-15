@@ -1,0 +1,31 @@
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery.min.js"></script>    
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/docs.min.js"></script>
+    <script src="https://togetherjs.com/togetherjs-min.js"></script>
+    <script>
+        $("#start-togetherjs").on('click', function() {
+            var textButton = $("#start-togetherjs").text();
+            if (textButton == "Share my doc") {
+                $("#start-togetherjs").text("Stop sharing");
+                $("#start-togetherjs").attr('class', 'btn btn-sm btn-warning');
+            } else {
+                $("#start-togetherjs").text("Share my doc");
+                $("#start-togetherjs").attr('class', 'btn btn-sm btn-success');
+            }
+            TogetherJS();
+        });
+
+        $(document).ready(function() {
+            // $("#start-togetherjs").click(TogetherJS);
+            if (editor != null && editor != undefined) {
+                var code = editor.getSession().getValue();
+                resMarked = marked(code);
+                $("#result").html(resMarked);    
+            }
+        });
+    </script>    
+  </body>
+</html>

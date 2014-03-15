@@ -25,6 +25,7 @@ app.configure(function() {
 	app.set('views', __dirname + '/views'); // views folder
 	app.set('view engine', 'ejs'); // view engine for this projet : ejs	
 
+	app.use(express.bodyParser()); // for POST Requests
     app.use(logger); // Here you add your logger to the stack.
     app.use(app.router); // The Express routes handler.
 });
@@ -44,6 +45,22 @@ app.get('/contact', function(req, res) {
 	res.render('contact.ejs');
 });
 
+// About page
+app.post('/saveDocument', function(req, res) {
+	var idDocument = req.body.id;
+	var markdownDocument = req.body.content;
+
+	model.getFile(idDocument, function (file) {
+		if (file == null) {
+			utils.redirect(req, res, '/');
+		} else {
+			// save the file
+			file.content = markdownDocument;
+			model.saveFile(file);
+			res.send('[]');
+		}
+	});
+});
 
 // Create a new document
 app.get('/new', function(req, res) {
@@ -52,11 +69,11 @@ app.get('/new', function(req, res) {
 
 // access the file
 app.get('/file/:idFile', function(req, res) {
-	model.getFile(req.params.idFile, function (contentData) {
-		if (contentData == null) {
+	model.getFile(req.params.idFile, function (file) {
+		if (file == null) {
 			utils.redirect(req, res, '/new');
 		} else {
-			res.render('document.ejs', {content: contentData});
+			res.render('document.ejs', {content: file.content});
 		}
 	});
 });

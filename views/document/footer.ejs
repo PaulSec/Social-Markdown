@@ -8,11 +8,11 @@
     <script>
         $("#start-togetherjs").on('click', function() {
             var textButton = $("#start-togetherjs").text();
-            if (textButton == "Share my doc") {
-                $("#start-togetherjs").text("Stop sharing");
+            if (textButton == "Edit live") {
+                $("#start-togetherjs").text("Stop live editing");
                 $("#start-togetherjs").attr('class', 'btn btn-sm btn-warning');
             } else {
-                $("#start-togetherjs").text("Share my doc");
+                $("#start-togetherjs").text("Edit live");
                 $("#start-togetherjs").attr('class', 'btn btn-sm btn-success');
             }
             TogetherJS();

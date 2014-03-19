@@ -1,38 +1,35 @@
-div#editor {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width:700px;
-    margin-top: 60px;
-    margin-left:10px;      
-    margin-bottom: 10px;
-}
-div#result {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width:700px;
-    margin-top: 60px;
-    margin-right:10px;      
-    margin-left: 730px;
-    margin-bottom: 10px;
-    background-color: #E8E8E8;
+body {
+    padding: 51px 0 0;
 }
 
-button#start-togetherjs {
-    margin-top:10px;
-    margin-left:10px;
-}
-
+button#start-togetherjs,
 button#save-document {
-    margin-top:10px;
+    margin: 10px 5px 0;
+}
+iframe#fork {
+    margin: 15px 0 0;
 }
 
-iframe#fork {
-    margin-left:400px;
-    margin-top:15px;
+.document {
+    display: block;
+}
+.document .part {
+    position: fixed;
+    top: 51px; bottom: 0;
+    overflow: auto;
+}
+#editor.part {
+    left: 0; right: 50%;
+    background: #272822;
+    color: #F8F8F8;
+}
+#result.part {
+    left: 50%; right: 0;
+    padding: 20px;
+    background: #F8F8F8;
+    color: #272822;
+}
+
+#result.part a {
+    color: #3498db;
 }

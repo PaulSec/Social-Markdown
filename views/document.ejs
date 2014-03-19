@@ -1,15 +1,12 @@
 <% include document/header.ejs %>
 
-    <div class="container theme-showcase" role="main">
-
-        <section>
-            <div id="editor">
+    <section class="document">
+        <div class="part" id="editor">
 <%- content %>
-            </div>
-            <div id="result">
-            </div>
-        </section>
-    </div>
+        </div><!--
+        --><div class="part" id="result">
+        </div>
+    </section>
 
     <script src="/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/marked.js" type="text/javascript" charset="utf-8"></script>
@@ -17,11 +14,8 @@
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/markdown");
-        editor.getSession().setUseWrapMode(true)
-        editor.setShowPrintMargin(false)        
-        editor.setOptions({
-             maxLines: Infinity
-        });
+        editor.getSession().setUseWrapMode(true);
+        editor.setShowPrintMargin(false);
 
         // When changes on the editor
         editor.on("change", function(e) {

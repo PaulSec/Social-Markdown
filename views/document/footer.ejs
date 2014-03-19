@@ -21,6 +21,7 @@
         $("#save-document").on('click', function() {
             var url = document.URL; 
             var markdown = editor.getSession().getValue();
+            markdown = markdown.substring(1, markdown.length)
             var idDocument = url.match(/[a-z0-9]{48}/g);
 
             idDocument = idDocument[0];

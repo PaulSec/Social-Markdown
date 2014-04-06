@@ -79,6 +79,24 @@ app.get('/markdown/:id', function(req, res) {
 	});
 });
 
+// Create a new document
+app.get('/doc/new', function(req, res) {
+	session.initSession(req, res, 'doc');
+});
+
+// access the file
+app.get('/doc/:id', function(req, res) {
+	model.getFile(req.params.id, function (file) {
+		if (file == null) {
+			utils.redirect(req, res, '/doc/new');
+		} else {
+			// res.send('On va faire du doc ici');
+			res.render('doc.ejs', {content: file.content});
+		}
+	});
+});
+
+
 // bootstrap help 
 app.get('/bootstrap', function(req, res) {
 	res.render('bootstrap.ejs');

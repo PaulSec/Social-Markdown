@@ -21,6 +21,7 @@ app.configure(function() {
 	app.use(express.session({secret: 'privateKeyForSession'}));
 	app.use("/js", express.static(__dirname + '/public/js')); // javascript folder
 	app.use("/css", express.static(__dirname + '/public/css')); // css folder
+	app.use("/img", express.static(__dirname + '/public/img')); // css folder
 
 	app.set('views', __dirname + '/views'); // views folder
 	app.set('view engine', 'ejs'); // view engine for this projet : ejs	
@@ -63,17 +64,17 @@ app.post('/saveDocument', function(req, res) {
 });
 
 // Create a new document
-app.get('/new', function(req, res) {
-	session.initSession(req, res);
+app.get('/markdown/new', function(req, res) {
+	session.initSession(req, res, 'markdown');
 });
 
 // access the file
-app.get('/file/:idFile', function(req, res) {
-	model.getFile(req.params.idFile, function (file) {
+app.get('/markdown/:id', function(req, res) {
+	model.getFile(req.params.id, function (file) {
 		if (file == null) {
-			utils.redirect(req, res, '/new');
+			utils.redirect(req, res, '/markdown/new');
 		} else {
-			res.render('document.ejs', {content: file.content});
+			res.render('markdown.ejs', {content: file.content});
 		}
 	});
 });
@@ -81,6 +82,17 @@ app.get('/file/:idFile', function(req, res) {
 // bootstrap help 
 app.get('/bootstrap', function(req, res) {
 	res.render('bootstrap.ejs');
+});
+
+// test help 
+app.get('/test', function(req, res) {
+	fs.readFile('./test.html', function read(err, data) {
+		if (err) {
+		    throw err;
+		}
+		res.write(data);
+		res.end();
+	});
 });
 
 server.listen(8080);

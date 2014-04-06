@@ -11,9 +11,10 @@
         $(document).ready(function() {
             bkLib.onDomLoaded(function() { 
                 nicEditors.allTextAreas() 
-                var content = $("#doc-frame").html();
+                var content = $("#data").html();
                 var editor = nicEditors.findEditor('doc-frame');
                 editor.setContent(content);
+                $("#data").remove();
             });
         });
 
@@ -32,7 +33,8 @@
         $("#save-document").on('click', function() {
             var url = document.URL; 
             var idDocument = url.match(/[a-z0-9]{48}/g);
-            var content = $('#some-textarea').val();
+            var editor = nicEditors.findEditor('doc-frame');
+            var content = editor.getContent();
 
             idDocument = idDocument[0];
             $.post("/saveDocument", {id: idDocument, content:content});

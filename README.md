@@ -1,5 +1,7 @@
 ## Welcome on Social Markdown's README !
 
+![](http://i.imgur.com/hvpjjQ2.png "Screenshot")
+
 First.. 
 
 > _Wanna try it ?_

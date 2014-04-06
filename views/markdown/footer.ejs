@@ -1,0 +1,41 @@
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery.min.js"></script>    
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/docs.min.js"></script>
+    <script src="https://togetherjs.com/togetherjs-min.js"></script>
+    <script>
+        $("#start-togetherjs").on('click', function() {
+            var textButton = $("#start-togetherjs").text();
+            if (textButton == "Edit live") {
+                $("#start-togetherjs").text("Stop live editing");
+                $("#start-togetherjs").attr('class', 'btn btn-sm btn-warning');
+            } else {
+                $("#start-togetherjs").text("Edit live");
+                $("#start-togetherjs").attr('class', 'btn btn-sm btn-success');
+            }
+            TogetherJS();
+        });
+
+        $("#save-document").on('click', function() {
+            var url = document.URL; 
+            var markdown = editor.getSession().getValue();
+            markdown = markdown.substring(1, markdown.length)
+            var idDocument = url.match(/[a-z0-9]{48}/g);
+
+            idDocument = idDocument[0];
+            $.post("/saveDocument", {id: idDocument, content:markdown});
+        });
+
+        $(document).ready(function() {
+            // $("#start-togetherjs").click(TogetherJS);
+            if (editor != null && editor != undefined) {
+                var code = editor.getSession().getValue();
+                resMarked = marked(code);
+                $("#result").html(resMarked);    
+            }
+        });
+    </script>    
+  </body>
+</html>

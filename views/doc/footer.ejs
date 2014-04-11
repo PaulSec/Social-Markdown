@@ -6,7 +6,11 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/nicEdit/nicEdit.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/js/aes.js"></script>
+    <script src="/js/aes-utils.js"></script>
     <script src="https://togetherjs.com/togetherjs-min.js"></script>
+    <script src="/js/together-utils.js"></script>
     <script>
         $(document).ready(function() {
             bkLib.onDomLoaded(function() { 
@@ -16,18 +20,6 @@
                 editor.setContent(content);
                 $("#data").remove();
             });
-        });
-
-        $("#start-togetherjs").on('click', function() {
-            var textButton = $("#start-togetherjs").text();
-            if (textButton == "Edit live") {
-                $("#start-togetherjs").text("Stop live editing");
-                $("#start-togetherjs").attr('class', 'btn btn-sm btn-warning');
-            } else {
-                $("#start-togetherjs").text("Edit live");
-                $("#start-togetherjs").attr('class', 'btn btn-sm btn-success');
-            }
-            TogetherJS();
         });
 
         $("#save-document").on('click', function() {
